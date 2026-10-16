@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Documentários Históricos — Luiz Figueiredo</title>
+  <meta name="description" content="Documentários sobre o patrimônio histórico, as fazendas centenárias e as memórias vivas da região de Itaperuna e do Norte Fluminense.">
+  <meta name="theme-color" content="#5d5f85">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Inter:wght@400;500;600&family=Cinzel:wght@700&display=swap">
+
+<style>
+  :root {
+    --bg:        #5d5f85;
+    --bg-card:   rgba(255,255,255,0.08);
+    --bg-hover:  rgba(255,255,255,0.13);
+    --border:    rgba(255,255,255,0.14);
+    --fg:        #ffffff;
+    --fg-muted:  #e0dff5;
+    --accent:    #00c8e6;
+    --accent-dim:#00a8c4;
+    --indigo:    #4a4c72;
+    --play-bg:   rgba(0,200,230,0.2);
+    color-scheme: dark;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: #000;
+    border-bottom: 1px solid var(--border);
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  .nav-brand {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+  }
+  .nav-brand img {
+    height: 64px;
+    width: auto;
+    display: block;
+    mix-blend-mode: screen;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 24px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--fg-muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--fg); }
+
+  .nav-links a.active {
+    color: var(--accent);
+    border-bottom: 1px solid var(--accent);
+    padding-bottom: 2px;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative;
+    padding: 80px 24px 60px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .hero-eyebrow {
+    font-family: 'Cinzel', serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .hero-eyebrow::before {
+    content: "";
+    display: block;
+    width: 32px;
+    height: 1px;
+    background: var(--accent);
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(2.4rem, 6vw, 4.2rem);
+    font-weight: 900;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+    margin-bottom: 20px;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .hero-sub {
+    font-size: 1rem;
+    color: var(--fg-muted);
+    max-width: 540px;
+    line-height: 1.7;
+    margin-bottom: 40px;
+  }
+
+  .hero-divider {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(to right, var(--border), transparent);
+  }
+
+  /* ── SECTION ── */
+  .section {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px 80px;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 36px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border);
+    flex-wrap: wrap;
+  }
+
+  .section-title {
+    font-family: 'Cinzel', serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--fg-muted);
+  }
+
+  .section-count {
+    font-size: 0.75rem;
+    color: var(--accent-dim);
+  }
+
+  /* ── DOC CARDS ── */
+  .doc-list {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .doc-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    transition: border-color 0.25s;
+  }
+
+  .doc-card:hover { border-color: var(--accent-dim); }
+
+  .doc-thumb {
+    position: relative;
+    aspect-ratio: 16/9;
+    background: linear-gradient(135deg, var(--indigo) 0%, #120d24 100%);
+    overflow: hidden;
+  }
+
+  .doc-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .doc-body {
+    padding: 28px 32px 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .doc-meta-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .card-tag {
+    font-size: 0.65rem;
+    font-family: 'Cinzel', serif;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent-dim);
+  }
+
+  .card-duration {
+    font-size: 0.72rem;
+    color: var(--fg-muted);
+  }
+
+  .doc-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.35rem;
+    font-weight: 700;
+    line-height: 1.3;
+  }
+
+  .doc-summary {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: var(--fg-muted);
+  }
+
+  .doc-parceria {
+    border-top: 1px solid var(--border);
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .parceria-label {
+    font-size: 0.65rem;
+    font-family: 'Cinzel', serif;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--fg-muted);
+  }
+
+  .parceria-text {
+    font-size: 0.8rem;
+    color: var(--fg-muted);
+    font-style: italic;
+  }
+
+  .doc-watch {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Cinzel', serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    text-decoration: none;
+    border: 1px solid var(--accent-dim);
+    border-radius: 2px;
+    padding: 10px 18px;
+    align-self: flex-start;
+    transition: background 0.2s, gap 0.2s;
+  }
+
+  .doc-watch:hover {
+    background: var(--play-bg);
+    gap: 12px;
+  }
+
+  /* ── MINI GRID ── */
+  .mini-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  .mini-card {
+    display: flex;
+    flex-direction: column;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    transition: border-color 0.25s, transform 0.2s;
+  }
+
+  .mini-card:hover {
+    border-color: var(--accent-dim);
+    transform: translateY(-2px);
+  }
+
+  .mini-thumb {
+    position: relative;
+    aspect-ratio: 16/9;
+    background: linear-gradient(135deg, var(--indigo) 0%, #120d24 100%);
+    overflow: hidden;
+  }
+
+  .mini-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: opacity 0.2s;
+  }
+
+  .mini-card:hover .mini-thumb img { opacity: 0.85; }
+
+  .mini-play {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0,0,0,0.3);
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+
+  .mini-card:hover .mini-play { opacity: 1; }
+
+  .mini-play-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--play-bg);
+    border: 1px solid var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .mini-body {
+    padding: 12px 14px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .mini-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    line-height: 1.35;
+    color: var(--fg);
+  }
+
+  .mini-meta {
+    font-size: 0.7rem;
+    color: var(--fg-muted);
+  }
+
+  /* ── ABOUT STRIP ── */
+  .about-strip {
+    background: rgba(0,0,0,0.18);
+    border-top: 1px solid rgba(255,255,255,0.12);
+    border-bottom: 1px solid rgba(255,255,255,0.12);
+    padding: 48px 24px;
+  }
+
+  .about-inner {
+    max-width: 700px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .tag {
+    font-family: 'Cinzel', serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  .about-inner p {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.15rem;
+    font-style: italic;
+    line-height: 1.8;
+    color: var(--fg-muted);
+  }
+
+  .about-inner strong { color: var(--fg); font-style: normal; }
+
+  /* ── FOOTER ── */
+  footer {
+    padding: 32px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+    background: #000;
+    border-top: 1px solid rgba(255,255,255,0.12);
+  }
+
+  .footer-brand img {
+    height: 48px;
+    width: auto;
+    display: block;
+    mix-blend-mode: screen;
+  }
+
+  footer p {
+    font-size: 0.75rem;
+    color: var(--fg-muted);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 820px) {
+    .doc-body { padding: 20px 20px 24px; }
+    .nav-links { display: none; }
+  }
+
+  @media (max-width: 700px) {
+    .mini-grid { grid-template-columns: 1fr 1fr; }
+  }
+
+  @media (max-width: 440px) {
+    .mini-grid { grid-template-columns: 1fr; }
+    .hero { padding-top: 52px; }
+    .doc-title { font-size: 1.1rem; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-brand">
+    <img src="./assets/img/logo-lf.png" alt="Luiz Figueiredo – Viagens e Dicas">
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Início</a></li>
+    <li><a href="ingles.html">Inglês</a></li>
+    <li><a href="documentarios.html" class="active">Documentários</a></li>
+    <li><a href="viagens.html">Viagens</a></li>
+    <li><a href="contato.html">Contato</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-eyebrow">Luiz Figueiredo</div>
+  <h1>Histórias que o<br><em>tempo guardou</em></h1>
+  <p class="hero-sub">
+    Documentários sobre o patrimônio histórico, as fazendas centenárias e as memórias vivas da região de Itaperuna e do Norte Fluminense.
+  </p>
+  <div class="hero-divider"></div>
+</section>
+
+<!-- DOCUMENTÁRIOS -->
+<section class="section">
+  <div class="section-header">
+    <span class="section-title">Documentários</span>
+    <span class="section-count">2 produções</span>
+  </div>
+
+  <div class="doc-list">
+
+    <!-- 1. Fazendas Históricas -->
+    <div class="doc-card">
+      <div class="doc-thumb">
+        <img src="./assets/img/doc-fazendas.jpg" alt="Fazendas Históricas — capa do documentário">
+      </div>
+      <div class="doc-body">
+        <div class="doc-meta-row">
+          <span class="card-tag">Documentário · Patrimônio · Memória</span>
+          <span class="card-duration">1h 28 min · 2024</span>
+        </div>
+        <h3 class="doc-title">Fazendas Históricas — Preservando a História e a Cultura Local</h3>
+        <p class="doc-summary">Uma jornada pelo Noroeste Fluminense e sua tríplice divisa com Minas Gerais e Espírito Santo. O documentário explora a formação histórica, econômica e social da região pelos vales dos rios Muriaé, Carangola e Itabapoana — investigando a ocupação do século XIX, o ciclo do café, o patrimônio arquitetônico das fazendas centenárias e uma reflexão necessária sobre a mão de obra escravizada e a memória dos povos que moldaram esse território.</p>
+        <a class="doc-watch" href="https://www.youtube.com/watch?v=B0kWpO_Mpb0" target="_blank" rel="noopener">
+          Assistir no YouTube
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <path d="M2 7h10M7 2l5 5-5 5" stroke="#00c8e6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        <div class="doc-parceria">
+          <span class="parceria-label">Realização e Parcerias</span>
+          <p class="parceria-text">Projeto cultural viabilizado pelo <strong>Governo Federal</strong>, <strong>Ministério da Cultura</strong> e <strong>Prefeitura Municipal de Itaperuna/RJ</strong>, por meio da <strong>Lei Paulo Gustavo</strong>. Com apoio do MOABI — Movimento Afro-Brasileiro de Itaperuna, proprietários de fazendas, professores, pesquisadores e memorialistas da região.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. Itaperuna nos Trilhos -->
+    <div class="doc-card">
+      <div class="doc-thumb">
+        <img src="./assets/img/doc-trilhos.jpg" alt="Itaperuna nos Trilhos — capa do documentário">
+      </div>
+      <div class="doc-body">
+        <div class="doc-meta-row">
+          <span class="card-tag">Documentário · Ferrovia · História</span>
+          <span class="card-duration">2024</span>
+        </div>
+        <h3 class="doc-title">Itaperuna nos Trilhos — O Tempo das Ferrovias</h3>
+        <p class="doc-summary">Um resgate da memória ferroviária do Norte e Noroeste Fluminense — como o trem foi o motor de transformação social, econômica e cultural para cidades como Itaperuna e Porciúncula. O documentário narra a rivalidade histórica entre a Estrada de Ferro Campos-Carangola e a Leopoldina Railway, a construção da Ponte de Ferro projetada pelo engenheiro suíço Herman Neigel com peças importadas da Inglaterra, e reúne relatos emocionantes de ex-maquinistas e memorialistas sobre o cotidiano das ferrovias. Uma obra sensível sobre o patrimônio esquecido das antigas estações que moldaram a região.</p>
+        <a class="doc-watch" href="https://youtu.be/6uwhPej_Aaw" target="_blank" rel="noopener">
+          Assistir no YouTube
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <path d="M2 7h10M7 2l5 5-5 5" stroke="#00c8e6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        <div class="doc-parceria">
+          <span class="parceria-label">Realização e Parcerias</span>
+          <p class="parceria-text">Viabilizado pela <strong>Lei Aldir Blanc</strong>, com apoio do <strong>Governo Federal</strong>, <strong>Ministério da Cultura</strong> e <strong>Prefeitura Municipal de Itaperuna</strong>. Realização da <strong>MOVIZ Produtora Audiovisual</strong> em parceria com o projeto Luiz Figueiredo Viagens. Colaboração do <strong>Museu Ferroviário de Juiz de Fora</strong>.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- VÍDEOS DO CANAL -->
+  <div class="section-header" style="margin-top:64px">
+    <span class="section-title">Mais Vídeos do Canal</span>
+    <span class="section-count">Histórias do Norte Fluminense</span>
+  </div>
+
+  <div class="mini-grid">
+
+    <a class="mini-card" href="https://youtu.be/GGS7myg7Im4" target="_blank" rel="noopener">
+      <div class="mini-thumb">
+        <img src="./assets/img/mini-2primos.jpg" alt="2 Primos" loading="lazy">
+        <div class="mini-play">
+          <div class="mini-play-btn">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 2L12 7 3 12V2Z" fill="#00c8e6"/></svg>
+          </div>
+        </div>
+      </div>
+      <div class="mini-body">
+        <h4 class="mini-title">2 Primos — Memórias de Degmar e Eraldo</h4>
+        <span class="mini-meta">12 min · 2024</span>
+      </div>
+    </a>
+
+    <a class="mini-card" href="https://youtu.be/iwV1zi_-TxA" target="_blank" rel="noopener">
+      <div class="mini-thumb">
+        <img src="./assets/img/mini-caete.jpg" alt="Fazenda Caeté" loading="lazy">
+        <div class="mini-play">
+          <div class="mini-play-btn">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 2L12 7 3 12V2Z" fill="#00c8e6"/></svg>
+          </div>
+        </div>
+      </div>
+      <div class="mini-body">
+        <h4 class="mini-title">Fazenda Caeté — Tesouro Histórico de Itaperuna</h4>
+        <span class="mini-meta">11 min · 2024</span>
+      </div>
+    </a>
+
+    <a class="mini-card" href="https://youtu.be/t7_LnGVSOyI" target="_blank" rel="noopener">
+      <div class="mini-thumb">
+        <img src="./assets/img/mini-motocontinuo.jpg" alt="Fazenda Moto Contínuo" loading="lazy">
+        <div class="mini-play">
+          <div class="mini-play-btn">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 2L12 7 3 12V2Z" fill="#00c8e6"/></svg>
+          </div>
+        </div>
+      </div>
+      <div class="mini-body">
+        <h4 class="mini-title">Fazenda Moto Contínuo — Porciúncula</h4>
+        <span class="mini-meta">12 min · 2022</span>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<!-- ABOUT STRIP -->
+<div class="about-strip">
+  <div class="about-inner">
+    <span class="tag">Sobre os documentários</span>
+    <p>
+      <strong>Luiz Figueiredo</strong> documenta a história esquecida do interior do Rio de Janeiro —
+      as ferrovias que conectaram cidades, as fazendas que moldaram famílias e os personagens que
+      viveram histórias que merecem ser contadas antes que o tempo as apague.
+    </p>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">
+    <img src="./assets/img/logo-lf.png" alt="Luiz Figueiredo">
+  </div>
+  <p>© 2026 · Itaperuna, Rio de Janeiro</p>
+  <p>
+    <a href="https://www.youtube.com/@LuizFigueiredoViagens" target="_blank" rel="noopener"
+       style="color: var(--accent); text-decoration:none;">YouTube ↗</a>
+  </p>
+</footer>
+
+</body>
+</html>

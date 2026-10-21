@@ -496,6 +496,131 @@
     color: var(--fg-muted);
   }
 
+  /* ── DICAS SECTION ── */
+  .dicas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 24px;
+  }
+
+  .dica-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 28px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    text-decoration: none;
+    color: inherit;
+    transition: border-color 0.2s, background 0.2s;
+  }
+
+  .dica-card:hover {
+    border-color: var(--accent-dim);
+    background: var(--bg-hover);
+  }
+
+  .dica-card__header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .dica-card__icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+  }
+
+  .dica-card__name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--fg);
+    line-height: 1.2;
+  }
+
+  .dica-card__tag {
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  .dica-card__text {
+    font-size: 0.88rem;
+    color: var(--fg-muted);
+    line-height: 1.7;
+    flex: 1;
+  }
+
+  .dica-card__cta {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-top: 4px;
+  }
+
+  .dicas-grid--single {
+    grid-template-columns: 1fr;
+    max-width: 640px;
+  }
+
+  .section--apoio {
+    padding-top: 0;
+  }
+
+  .apoio-inline {
+    background: rgba(0,200,230,0.07) !important;
+    border: 1px solid rgba(0,200,230,0.2) !important;
+    gap: 20px !important;
+    cursor: default;
+  }
+
+  .apoio-inline:hover {
+    background: rgba(0,200,230,0.10) !important;
+    border-color: rgba(0,200,230,0.35) !important;
+  }
+
+  .apoio-inline__title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+  }
+
+  .apoio-inline__text {
+    font-size: 0.88rem;
+    color: var(--fg-muted);
+    line-height: 1.7;
+  }
+
+  .apoio-inline__methods {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .apoio-inline__row {
+    font-size: 0.82rem;
+    color: var(--fg-muted);
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+
+  .apoio-inline__country {
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  .apoio-inline__row strong { color: var(--fg); }
+
   /* ── APOIO ── */
   .apoio-box {
     background: var(--bg-card);
@@ -867,106 +992,6 @@
   })();
 </script>
 
-  <!-- LINKS & REDES -->
-  <section class="section">
-    <div class="section-header">
-      <span class="section-title">Siga & Conecte</span>
-    </div>
-    <div class="links-grid">
-
-      <a class="link-card" href="https://www.youtube.com/@LuizFigueiredoViagens" target="_blank" rel="noopener">
-        <div class="link-icon">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6a3 3 0 0 0-2.1 2.1C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.7 15.5V8.5l6.3 3.5-6.3 3.5z"/></svg>
-        </div>
-        <div class="link-label">
-          <span class="link-name">YouTube</span>
-          <span class="link-sub">@LuizFigueiredoViagens</span>
-        </div>
-      </a>
-
-      <a class="link-card" href="https://instagram.com/luizfigueiredoviagens" target="_blank" rel="noopener">
-        <div class="link-icon">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.2c3.2 0 3.6 0 4.9.1 3.3.1 4.8 1.7 4.9 4.9.1 1.3.1 1.6.1 4.8 0 3.2 0 3.6-.1 4.8-.1 3.2-1.7 4.8-4.9 4.9-1.3.1-1.6.1-4.9.1-3.2 0-3.6 0-4.8-.1-3.3-.1-4.8-1.7-4.9-4.9C2.2 15.6 2.2 15.3 2.2 12c0-3.2 0-3.6.1-4.8C2.4 3.9 4 2.3 7.2 2.3c1.2-.1 1.6-.1 4.8-.1zm0-2.2C8.7 0 8.3 0 7.1.1 2.7.3.3 2.7.1 7.1 0 8.3 0 8.7 0 12c0 3.3 0 3.7.1 4.9.2 4.4 2.6 6.8 7 7C8.3 24 8.7 24 12 24c3.3 0 3.7 0 4.9-.1 4.4-.2 6.8-2.6 7-7 .1-1.2.1-1.6.1-4.9 0-3.3 0-3.7-.1-4.9C23.7 2.7 21.3.3 16.9.1 15.7 0 15.3 0 12 0zm0 5.8a6.2 6.2 0 1 0 0 12.4 6.2 6.2 0 0 0 0-12.4zm0 10.2a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.4-11.8a1.44 1.44 0 1 0 0 2.88 1.44 1.44 0 0 0 0-2.88z"/></svg>
-        </div>
-        <div class="link-label">
-          <span class="link-name">Instagram</span>
-          <span class="link-sub">@luizfigueiredoviagens</span>
-        </div>
-      </a>
-
-      <a class="link-card" href="https://www.facebook.com/Luiz-Figueiredo-Viagens-104635575676427" target="_blank" rel="noopener">
-        <div class="link-icon">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M24 12.07C24 5.41 18.63 0 12 0S0 5.41 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.04V9.41c0-3.02 1.8-4.7 4.54-4.7 1.31 0 2.68.24 2.68.24v2.97h-1.51c-1.49 0-1.95.93-1.95 1.88v2.27h3.32l-.53 3.49h-2.79V24C19.61 23.1 24 18.1 24 12.07z"/></svg>
-        </div>
-        <div class="link-label">
-          <span class="link-name">Facebook</span>
-          <span class="link-sub">Luiz Figueiredo Viagens</span>
-        </div>
-      </a>
-
-      <a class="link-card" href="https://linktr.ee/luizfigueiredoviagens" target="_blank" rel="noopener">
-        <div class="link-icon">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 2L12 8l3.5-6H8.5zM4 9l3 5-3 1v3h4l1-4h4l1 4h4v-3l-3-1 3-5H4zm8 7.5a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3z"/></svg>
-        </div>
-        <div class="link-label">
-          <span class="link-name">Linktree</span>
-          <span class="link-sub">Todos os links</span>
-        </div>
-      </a>
-
-      <a class="link-card" href="https://getyourguide.pt/?partner_id=D1VMGO4&cmp=share_to_earn" target="_blank" rel="noopener">
-        <div class="link-icon">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C8.1 2 5 5.1 5 9c0 5.3 7 13 7 13s7-7.7 7-13c0-3.9-3.1-7-7-7zm0 9.5c-1.4 0-2.5-1.1-2.5-2.5S10.6 6.5 12 6.5s2.5 1.1 2.5 2.5S13.4 11.5 12 11.5z"/></svg>
-        </div>
-        <div class="link-label">
-          <span class="link-name">Passeios & Ingressos</span>
-          <span class="link-sub">GetYourGuide</span>
-        </div>
-      </a>
-
-      <a class="link-card" href="https://www.expedia.com" target="_blank" rel="noopener">
-        <div class="link-icon">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2.5 2v1.5L11 21l3.5 1.5V21L12 19v-5.5l9 2.5z"/></svg>
-        </div>
-        <div class="link-label">
-          <span class="link-name">Voos & Hotéis</span>
-          <span class="link-sub">Expedia parceiro</span>
-        </div>
-      </a>
-
-      <a class="link-card" href="https://www.viator.com" target="_blank" rel="noopener">
-        <div class="link-icon">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C8.1 2 5 5.1 5 9c0 5.3 7 13 7 13s7-7.7 7-13c0-3.9-3.1-7-7-7zm0 9.5c-1.4 0-2.5-1.1-2.5-2.5S10.6 6.5 12 6.5s2.5 1.1 2.5 2.5S13.4 11.5 12 11.5z"/></svg>
-        </div>
-        <div class="link-label">
-          <span class="link-name">Turismo & Passeios</span>
-          <span class="link-sub">Viator parceiro</span>
-        </div>
-      </a>
-
-      <a class="link-card" href="https://www.holafly.com" target="_blank" rel="noopener">
-        <div class="link-icon">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M1.5 8.5a13 13 0 0 1 21 0M5 12a10 10 0 0 1 14 0M8.5 15.5a5 5 0 0 1 7 0M12 19h.01" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-        </div>
-        <div class="link-label">
-          <span class="link-name">eSIM Internet</span>
-          <span class="link-sub">Holafly — internet no exterior</span>
-        </div>
-      </a>
-
-      <a class="link-card" href="https://wise.com" target="_blank" rel="noopener">
-        <div class="link-icon">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M2 10h20" stroke="currentColor" stroke-width="2"/></svg>
-        </div>
-        <div class="link-label">
-          <span class="link-name">Wise</span>
-          <span class="link-sub">Cartão multimoeda</span>
-        </div>
-      </a>
-
-    </div>
-  </section>
-
   <!-- PLAYLISTS -->
   <section class="section">
     <div class="section-header">
@@ -1031,41 +1056,142 @@
         </div>
       </a>
 
-      <a class="playlist-card" href="https://tr.ee/F1UmdxWzOC" target="_blank" rel="noopener">
-        <div class="playlist-icon">✈️</div>
-        <div class="playlist-info">
-          <span class="playlist-name">Dicas de Viagem</span>
-          <span class="playlist-sub">Planejamento & dicas</span>
+    </div>
+  </section>
+
+  <!-- PARA SUA PRÓXIMA VIAGEM -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-title">Para sua próxima viagem</span>
+    </div>
+    <div class="dicas-grid">
+
+      <a class="dica-card" href="https://getyourguide.pt/?partner_id=D1VMGO4&cmp=share_to_earn" target="_blank" rel="noopener">
+        <div class="dica-card__header">
+          <span class="dica-card__icon">🎟️</span>
+          <div>
+            <div class="dica-card__tag">Passeios & Ingressos</div>
+            <div class="dica-card__name">GetYourGuide</div>
+          </div>
         </div>
+        <p class="dica-card__text">Em 25 anos de viagem, aprendi que reservar passeios com antecedência faz toda a diferença — principalmente nas altas temporadas. O GetYourGuide reúne as melhores experiências locais com preço justo e cancelamento flexível.</p>
+        <span class="dica-card__cta">Explorar passeios ↗</span>
+      </a>
+
+      <a class="dica-card" href="https://www.expedia.com" target="_blank" rel="noopener">
+        <div class="dica-card__header">
+          <span class="dica-card__icon">✈️</span>
+          <div>
+            <div class="dica-card__tag">Voos & Hotéis</div>
+            <div class="dica-card__name">Expedia</div>
+          </div>
+        </div>
+        <p class="dica-card__text">Sempre comparo os voos e hotéis aqui antes de fechar qualquer viagem. O pacote completo costuma sair mais barato do que comprar separado — e já me salvou mais de uma vez em mudanças de última hora.</p>
+        <span class="dica-card__cta">Buscar voos e hotéis ↗</span>
+      </a>
+
+      <a class="dica-card" href="https://www.viator.com" target="_blank" rel="noopener">
+        <div class="dica-card__header">
+          <span class="dica-card__icon">🗺️</span>
+          <div>
+            <div class="dica-card__tag">Tours & Turismo</div>
+            <div class="dica-card__name">Viator</div>
+          </div>
+        </div>
+        <p class="dica-card__text">Para quem quer ir além dos roteiros tradicionais, o Viator tem opções incríveis — de city tours a experiências gastronômicas e trilhas guiadas. Uma das minhas ferramentas favoritas para descobrir o lado autêntico de cada destino.</p>
+        <span class="dica-card__cta">Ver experiências ↗</span>
+      </a>
+
+      <a class="dica-card" href="https://www.holafly.com" target="_blank" rel="noopener">
+        <div class="dica-card__header">
+          <span class="dica-card__icon">📶</span>
+          <div>
+            <div class="dica-card__tag">Internet no exterior</div>
+            <div class="dica-card__name">Holafly — eSIM</div>
+          </div>
+        </div>
+        <p class="dica-card__text">Ficar sem internet viajando é coisa do passado. Com o eSIM da Holafly você chega no destino já conectado, sem precisar comprar chip físico nem pagar roaming absurdo. Uso e recomendo há anos.</p>
+        <span class="dica-card__cta">Ver planos de eSIM ↗</span>
+      </a>
+
+      <a class="dica-card" href="https://wise.com" target="_blank" rel="noopener">
+        <div class="dica-card__header">
+          <span class="dica-card__icon">💳</span>
+          <div>
+            <div class="dica-card__tag">Cartão multimoeda</div>
+            <div class="dica-card__name">Wise</div>
+          </div>
+        </div>
+        <p class="dica-card__text">Depois que comecei a usar o cartão Wise, parei de pagar taxas absurdas de câmbio. Você carrega várias moedas no mesmo cartão e paga com a taxa real — sem surpresas na fatura. Essencial para quem viaja com frequência.</p>
+        <span class="dica-card__cta">Conhecer o Wise ↗</span>
       </a>
 
     </div>
   </section>
 
-  <!-- APOIO AO CANAL -->
-  <section class="section">
-    <div class="section-header">
-      <span class="section-title">Apoie o Canal</span>
-    </div>
-    <div class="apoio-box">
-      <h2 class="apoio-title">Ajude a ir mais longe</h2>
-      <p class="apoio-desc">Todo o conteúdo é gratuito — você já ajuda assistindo, curtindo e compartilhando os vídeos. Mas se quiser apoiar diretamente as próximas viagens:</p>
-      <div class="apoio-methods">
-        <div class="apoio-method">
-          <div class="apoio-method__country">🇧🇷 Brasil</div>
-          <div class="apoio-method__detail">
-            <span><strong>PIX:</strong> luizcarlosfigueiredo@hotmail.com</span>
+  <!-- APOIO INLINE -->
+  <section class="section section--apoio">
+    <div class="dicas-grid dicas-grid--single">
+      <div class="dica-card apoio-inline">
+        <div class="dica-card__header">
+          <span class="dica-card__icon">🙏</span>
+          <div>
+            <div class="dica-card__tag">Apoie o canal</div>
+            <div class="dica-card__name">Ajude a ir mais longe</div>
           </div>
         </div>
-        <div class="apoio-method">
-          <div class="apoio-method__country">🇵🇹 Portugal</div>
-          <div class="apoio-method__detail">
-            <span><strong>IBAN:</strong> PT50 0023 0000 45590698692 94</span>
-            <span><strong>SWIFT:</strong> ACTVPTPL</span>
-            <span><strong>Conta:</strong> 455 906 986 92</span>
+        <p class="dica-card__text">Todo o conteúdo é gratuito — você já ajuda muito assistindo, curtindo e compartilhando. Mas se quiser apoiar diretamente as próximas viagens, aqui estão os dados:</p>
+        <div class="apoio-inline__methods">
+          <div class="apoio-inline__row">
+            <span class="apoio-inline__country">🇧🇷 Brasil —</span>
+            <span><strong>PIX:</strong> luizcarlosfigueiredo@hotmail.com</span>
+          </div>
+          <div class="apoio-inline__row">
+            <span class="apoio-inline__country">🇵🇹 Portugal —</span>
+            <span><strong>IBAN:</strong> PT50 0023 0000 45590698692 94 &nbsp;·&nbsp; <strong>SWIFT:</strong> ACTVPTPL</span>
           </div>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- REDES SOCIAIS -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-title">Siga & Conecte</span>
+    </div>
+    <div class="links-grid">
+
+      <a class="link-card" href="https://www.youtube.com/@LuizFigueiredoViagens" target="_blank" rel="noopener">
+        <div class="link-icon">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6a3 3 0 0 0-2.1 2.1C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.7 15.5V8.5l6.3 3.5-6.3 3.5z"/></svg>
+        </div>
+        <div class="link-label">
+          <span class="link-name">YouTube</span>
+          <span class="link-sub">@LuizFigueiredoViagens</span>
+        </div>
+      </a>
+
+      <a class="link-card" href="https://instagram.com/luizfigueiredoviagens" target="_blank" rel="noopener">
+        <div class="link-icon">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.2c3.2 0 3.6 0 4.9.1 3.3.1 4.8 1.7 4.9 4.9.1 1.3.1 1.6.1 4.8 0 3.2 0 3.6-.1 4.8-.1 3.2-1.7 4.8-4.9 4.9-1.3.1-1.6.1-4.9.1-3.2 0-3.6 0-4.8-.1-3.3-.1-4.8-1.7-4.9-4.9C2.2 15.6 2.2 15.3 2.2 12c0-3.2 0-3.6.1-4.8C2.4 3.9 4 2.3 7.2 2.3c1.2-.1 1.6-.1 4.8-.1zm0-2.2C8.7 0 8.3 0 7.1.1 2.7.3.3 2.7.1 7.1 0 8.3 0 8.7 0 12c0 3.3 0 3.7.1 4.9.2 4.4 2.6 6.8 7 7C8.3 24 8.7 24 12 24c3.3 0 3.7 0 4.9-.1 4.4-.2 6.8-2.6 7-7 .1-1.2.1-1.6.1-4.9 0-3.3 0-3.7-.1-4.9C23.7 2.7 21.3.3 16.9.1 15.7 0 15.3 0 12 0zm0 5.8a6.2 6.2 0 1 0 0 12.4 6.2 6.2 0 0 0 0-12.4zm0 10.2a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.4-11.8a1.44 1.44 0 1 0 0 2.88 1.44 1.44 0 0 0 0-2.88z"/></svg>
+        </div>
+        <div class="link-label">
+          <span class="link-name">Instagram</span>
+          <span class="link-sub">@luizfigueiredoviagens</span>
+        </div>
+      </a>
+
+      <a class="link-card" href="https://www.facebook.com/Luiz-Figueiredo-Viagens-104635575676427" target="_blank" rel="noopener">
+        <div class="link-icon">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M24 12.07C24 5.41 18.63 0 12 0S0 5.41 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.04V9.41c0-3.02 1.8-4.7 4.54-4.7 1.31 0 2.68.24 2.68.24v2.97h-1.51c-1.49 0-1.95.93-1.95 1.88v2.27h3.32l-.53 3.49h-2.79V24C19.61 23.1 24 18.1 24 12.07z"/></svg>
+        </div>
+        <div class="link-label">
+          <span class="link-name">Facebook</span>
+          <span class="link-sub">Luiz Figueiredo Viagens</span>
+        </div>
+      </a>
+
     </div>
   </section>
 

@@ -675,48 +675,197 @@
       </div>
     </a>
 
-    <!-- Grid de vídeos recentes -->
-    <div class="video-grid">
-      <a class="video-card" href="https://www.youtube.com/@LuizFigueiredoViagens" target="_blank" rel="noopener">
-        <div class="video-thumb">
-          <img src="https://i.ytimg.com/vi/GGS7myg7Im4/mqdefault.jpg" alt="" loading="lazy">
-          <div class="play-btn">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
-          </div>
-        </div>
-        <div class="video-info">
-          <span class="video-tag">Brasil</span>
-          <span class="video-title">Explorando destinos brasileiros com histórias e memórias</span>
-        </div>
-      </a>
+    <!-- Carrossel de playlists -->
+    <div class="carousel-wrap">
+      <div class="carousel" id="playlist-carousel">
 
-      <a class="video-card" href="https://www.youtube.com/@LuizFigueiredoViagens" target="_blank" rel="noopener">
-        <div class="video-thumb">
-          <img src="https://i.ytimg.com/vi/iwV1zi_-TxA/mqdefault.jpg" alt="" loading="lazy">
-          <div class="play-btn">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+        <a class="carousel-slide" href="https://www.youtube.com/watch?v=mNGlZMBgf-Q&list=PLxYW0OAvOBm1UGAr3kMFcym2IxbyVzo5J" target="_blank" rel="noopener">
+          <div class="video-thumb">
+            <img src="https://i.ytimg.com/vi/mNGlZMBgf-Q/maxresdefault.jpg" alt="Playlist Brasil" loading="lazy">
+            <div class="play-btn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></div>
           </div>
-        </div>
-        <div class="video-info">
-          <span class="video-tag">Mundo</span>
-          <span class="video-title">Roteiros internacionais e dicas de quem viaja há 25 anos</span>
-        </div>
-      </a>
+          <div class="video-info">
+            <span class="video-tag">🇧🇷 Brasil</span>
+            <span class="video-title">Playlist completa — destinos brasileiros</span>
+          </div>
+        </a>
 
-      <a class="video-card" href="https://www.youtube.com/@LuizFigueiredoViagens" target="_blank" rel="noopener">
-        <div class="video-thumb">
-          <img src="https://i.ytimg.com/vi/t7_LnGVSOyI/mqdefault.jpg" alt="" loading="lazy">
-          <div class="play-btn">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+        <a class="carousel-slide" href="https://www.youtube.com/watch?v=8VLM5EYWHMA&list=PLxYW0OAvOBm26WENI3L9aNyox08Ks6tGM" target="_blank" rel="noopener">
+          <div class="video-thumb">
+            <img src="https://i.ytimg.com/vi/8VLM5EYWHMA/maxresdefault.jpg" alt="Playlist Estados Unidos" loading="lazy">
+            <div class="play-btn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></div>
           </div>
-        </div>
-        <div class="video-info">
-          <span class="video-tag">Dicas</span>
-          <span class="video-title">Curiosidades, planejamento e o que ninguém te conta antes de viajar</span>
-        </div>
-      </a>
+          <div class="video-info">
+            <span class="video-tag">🇺🇸 Estados Unidos</span>
+            <span class="video-title">Playlist completa — roteiros pelos EUA</span>
+          </div>
+        </a>
+
+        <a class="carousel-slide" href="https://www.youtube.com/watch?v=95YX4p1Ih-Y&list=PLxYW0OAvOBm05rcuH3fdk0pEE5VdHJFEz" target="_blank" rel="noopener">
+          <div class="video-thumb">
+            <img src="https://i.ytimg.com/vi/95YX4p1Ih-Y/maxresdefault.jpg" alt="Playlist Malta" loading="lazy">
+            <div class="play-btn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></div>
+          </div>
+          <div class="video-info">
+            <span class="video-tag">🇲🇹 Malta</span>
+            <span class="video-title">Playlist completa — roteiros por Malta</span>
+          </div>
+        </a>
+
+        <a class="carousel-slide" href="https://www.youtube.com/watch?v=SU9WQ6utwUY&list=PLxYW0OAvOBm2_647kcIj5eK64px9Vzz4U" target="_blank" rel="noopener">
+          <div class="video-thumb">
+            <img src="https://i.ytimg.com/vi/SU9WQ6utwUY/maxresdefault.jpg" alt="Playlist Espanha" loading="lazy">
+            <div class="play-btn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></div>
+          </div>
+          <div class="video-info">
+            <span class="video-tag">🇪🇸 Espanha</span>
+            <span class="video-title">Playlist completa — roteiros pela Espanha</span>
+          </div>
+        </a>
+
+      </div>
+
+      <div class="carousel-controls">
+        <button class="carousel-btn" id="prev-btn" aria-label="Anterior">&#8592;</button>
+        <div class="carousel-dots" id="carousel-dots"></div>
+        <button class="carousel-btn" id="next-btn" aria-label="Próximo">&#8594;</button>
+      </div>
     </div>
   </section>
+
+<style>
+  .carousel-wrap { position: relative; }
+
+  .carousel {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    transition: transform 0.4s ease;
+  }
+
+  .carousel-slide {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    transition: border-color 0.25s, transform 0.25s;
+  }
+
+  .carousel-slide:hover {
+    border-color: var(--accent-dim);
+    transform: translateY(-3px);
+  }
+
+  .carousel-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 24px;
+  }
+
+  .carousel-btn {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    color: var(--fg);
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s, border-color 0.2s;
+  }
+
+  .carousel-btn:hover {
+    background: var(--bg-hover);
+    border-color: var(--accent-dim);
+  }
+
+  .carousel-dots {
+    display: flex;
+    gap: 8px;
+  }
+
+  .carousel-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--border);
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  .carousel-dot.active { background: var(--accent); }
+
+  @media (max-width: 900px) {
+    .carousel { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 540px) {
+    .carousel { grid-template-columns: 1fr; }
+  }
+</style>
+
+<script>
+  (function() {
+    const slides = document.querySelectorAll('.carousel-slide');
+    const dotsWrap = document.getElementById('carousel-dots');
+    let current = 0;
+    let slidesPerView = getSlidesPerView();
+
+    function getSlidesPerView() {
+      return window.innerWidth <= 540 ? 1 : window.innerWidth <= 900 ? 2 : 4;
+    }
+
+    // Create dots
+    const totalGroups = Math.ceil(slides.length / getSlidesPerView());
+    for (let i = 0; i < totalGroups; i++) {
+      const dot = document.createElement('button');
+      dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+      dot.setAttribute('aria-label', 'Slide ' + (i + 1));
+      dot.addEventListener('click', () => goTo(i));
+      dotsWrap.appendChild(dot);
+    }
+
+    function updateDots() {
+      document.querySelectorAll('.carousel-dot').forEach((d, i) => {
+        d.classList.toggle('active', i === current);
+      });
+    }
+
+    function goTo(idx) {
+      const spv = getSlidesPerView();
+      const max = Math.ceil(slides.length / spv) - 1;
+      current = Math.max(0, Math.min(idx, max));
+      slides.forEach((s, i) => {
+        s.style.display = (i >= current * spv && i < (current + 1) * spv) ? 'flex' : 'none';
+      });
+      updateDots();
+    }
+
+    // Initial hide on mobile
+    window.addEventListener('resize', () => {
+      current = 0;
+      goTo(0);
+    });
+
+    document.getElementById('prev-btn').addEventListener('click', () => goTo(current - 1));
+    document.getElementById('next-btn').addEventListener('click', () => goTo(current + 1));
+
+    // On desktop show all 4, controls hidden
+    if (getSlidesPerView() >= 4) {
+      document.querySelector('.carousel-controls').style.display = 'none';
+    }
+  })();
+</script>
 
   <!-- LINKS & REDES -->
   <section class="section">

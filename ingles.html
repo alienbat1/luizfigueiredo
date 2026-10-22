@@ -306,6 +306,90 @@
   .nivel-badge--sim { background: rgba(0,200,230,0.15); color: var(--accent); }
   .nivel-badge--talvez { background: rgba(255,255,255,0.1); color: var(--fg-muted); }
 
+  /* ── QUIZ CTA ── */
+  .quiz-cta-section {
+    background: linear-gradient(135deg, rgba(0,200,230,0.08) 0%, rgba(93,95,133,0) 60%);
+    border: 1px solid rgba(0,200,230,0.25);
+    border-radius: 16px;
+    padding: clamp(32px, 5vw, 52px);
+    margin-top: 40px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 32px;
+    align-items: center;
+  }
+
+  @media (max-width: 620px) {
+    .quiz-cta-section { grid-template-columns: 1fr; }
+    .quiz-cta-btn-wrap { justify-self: start; }
+  }
+
+  .quiz-cta-eyebrow {
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 10px;
+  }
+
+  .quiz-cta-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.3rem, 3vw, 1.75rem);
+    line-height: 1.25;
+    margin-bottom: 12px;
+  }
+
+  .quiz-cta-title em { font-style: italic; color: var(--accent); }
+
+  .quiz-cta-desc {
+    font-size: 0.9rem;
+    color: var(--fg-muted);
+    line-height: 1.7;
+    max-width: 480px;
+  }
+
+  .quiz-cta-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 16px;
+  }
+
+  .quiz-cta-tag {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    font-size: 0.75rem;
+    padding: 3px 10px;
+    color: var(--fg-muted);
+  }
+
+  .quiz-cta-btn {
+    display: inline-block;
+    background: var(--accent);
+    color: #0a0b14;
+    font-weight: 700;
+    font-size: 0.82rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 16px 28px;
+    border-radius: 8px;
+    transition: background 0.2s, transform 0.15s;
+    white-space: nowrap;
+    text-align: center;
+  }
+
+  .quiz-cta-btn:hover { background: var(--accent-dim); transform: translateY(-2px); }
+
+  .quiz-cta-note {
+    font-size: 0.72rem;
+    color: rgba(255,255,255,0.35);
+    margin-top: 8px;
+    text-align: center;
+  }
+
   /* ── MATERIAIS ── */
   .materiais-grid {
     display: grid;
@@ -502,6 +586,7 @@
   .field-group textarea::placeholder { color: rgba(255,255,255,0.28); }
 
   .field-group select { appearance: none; cursor: pointer; }
+  .field-group select option { background: #3a3c5a; color: #fff; }
   .field-group textarea { resize: vertical; min-height: 90px; }
 
   /* Nav do formulário */
@@ -529,6 +614,7 @@
   .fbtn--primary:hover { background: var(--accent-dim); }
   .fbtn--ghost { background: transparent; color: var(--fg-muted); border: 1.5px solid var(--border); }
   .fbtn--ghost:hover { border-color: var(--fg-muted); color: var(--fg); }
+  .fbtn:disabled { opacity: 0.6; cursor: default; }
 
   .form-note {
     font-size: 0.75rem;
@@ -642,14 +728,12 @@
     <div class="sobre-grid">
       <div class="sobre-text">
         <p class="section-body">
-          <!-- A COMPLETAR: substitua pelo texto oficial quando o Luiz enviar o resumo -->
           Luiz Figueiredo é professor de inglês com mais de duas décadas de prática no ensino de idiomas. Natural de Itaperuna (RJ), combina formação acadêmica com uma trajetória única: já visitou mais de 51 países e usa cada experiência no exterior para trazer o idioma à vida nas aulas.
         </p>
         <p class="section-body" style="margin-top:16px;">
           Sua abordagem vai além da gramática. Ele trabalha com alunos adultos que querem se comunicar com confiança — em viagens, no trabalho, em estudos no exterior ou simplesmente para abrir portas. O inglês, para Luiz, é a chave que conecta pessoas a mundos que elas ainda não conhecem.
         </p>
         <p class="section-body" style="margin-top:16px;">
-          <!-- A COMPLETAR: formação, instituições, certificações que o Luiz informar -->
           <em style="color:rgba(255,255,255,0.35); font-style:normal; font-size:0.8rem;">[ Formação e certificações — a completar com informações do professor ]</em>
         </p>
       </div>
@@ -716,44 +800,61 @@
     </div>
   </section>
 
-  <!-- ── PARA QUEM É ── -->
+  <!-- ── NÍVEIS ── -->
   <section id="niveis">
-    <p class="section-eyebrow">Para quem é</p>
-    <h2 class="section-title">Qual dessas situações<br><em>é a sua?</em></h2>
+    <p class="section-eyebrow">Níveis atendidos</p>
+    <h2 class="section-title">Do iniciante ao avançado.<br><em>Você está no lugar certo.</em></h2>
     <p class="section-body">
-      Não importa se você nunca abriu um livro de inglês ou já assiste série sem legenda. O que importa é o que você quer fazer com o idioma — e o Luiz constrói o caminho a partir daí.
+      Luiz trabalha com alunos em qualquer estágio. O ponto de partida não importa — o que importa é saber para onde você quer chegar.
     </p>
 
     <div class="niveis-list">
       <div class="nivel-row">
-        <span class="nivel-nome">✈️ Viajar sem depender de ninguém</span>
-        <span class="nivel-desc">Pedir informação, entender o cardápio, negociar no mercado, se virar no aeroporto ou em uma emergência no exterior — tudo isso sem precisar do Google Translate o tempo todo.</span>
-        <span class="nivel-badge nivel-badge--sim">Especialidade</span>
-      </div>
-      <div class="nivel-row">
-        <span class="nivel-nome">🎬 Entender filmes e séries sem legenda</span>
-        <span class="nivel-desc">Você liga o Netflix, tira a legenda e não perde o fio da meada. Treino de compreensão auditiva com conteúdo que você já ama — e que passa rápido.</span>
+        <span class="nivel-nome">Iniciante (A1–A2)</span>
+        <span class="nivel-desc">Nunca estudou ou precisa recomeçar do zero. Primeiros passos com confiança e sem frustração.</span>
         <span class="nivel-badge nivel-badge--sim">✓ Atende</span>
       </div>
       <div class="nivel-row">
-        <span class="nivel-nome">💬 Conversar com estrangeiros</span>
-        <span class="nivel-desc">Fazer amigos em viagem, falar com colegas de trabalho internacionais, participar de uma reunião ou simplesmente trocar ideia com quem você encontra pelo mundo.</span>
+        <span class="nivel-nome">Intermediário (B1–B2)</span>
+        <span class="nivel-desc">Entende bastante mas trava na hora de falar. Foco em fluência, pronúncia e expressões naturais.</span>
         <span class="nivel-badge nivel-badge--sim">✓ Atende</span>
       </div>
       <div class="nivel-row">
-        <span class="nivel-nome">📱 Usar a internet em inglês à vontade</span>
-        <span class="nivel-desc">Ler artigos, comentar vídeos, trocar mensagens, seguir criadores estrangeiros — sem precisar traduzir tudo o tempo inteiro e sem medo de escrever errado.</span>
+        <span class="nivel-nome">Avançado (C1–C2)</span>
+        <span class="nivel-desc">Já fala bem mas quer polir o idioma — sotaque, nuances, inglês acadêmico ou profissional.</span>
         <span class="nivel-badge nivel-badge--sim">✓ Atende</span>
       </div>
       <div class="nivel-row">
-        <span class="nivel-nome">🎓 Morar, estudar ou trabalhar fora</span>
-        <span class="nivel-desc">Preparação para intercâmbio, imigração ou uma posição em empresa internacional. Inglês fluente o suficiente para você viver de verdade no exterior — não só sobreviver.</span>
-        <span class="nivel-badge nivel-badge--sim">✓ Atende</span>
+        <span class="nivel-nome">Inglês para viagem</span>
+        <span class="nivel-desc">Curso rápido e prático para quem vai viajar e precisa se virar em situações reais: aeroporto, hotel, restaurante, emergências.</span>
+        <span class="nivel-badge nivel-badge--sim">✓ Especialidade</span>
       </div>
       <div class="nivel-row">
-        <span class="nivel-nome">🌱 Começar do absoluto zero</span>
-        <span class="nivel-desc">Nunca estudou ou estudou há tanto tempo que parece que nunca estudou. Sem julgamento, sem pressa — primeiros passos construídos com calma, confiança e muito contexto real.</span>
-        <span class="nivel-badge nivel-badge--sim">✓ Atende</span>
+        <span class="nivel-nome">Inglês para negócios</span>
+        <span class="nivel-desc">Vocabulário e comunicação para reuniões, e-mails, apresentações e networking internacional.</span>
+        <span class="nivel-badge nivel-badge--talvez">Consultar</span>
+      </div>
+    </div>
+
+    <!-- ── QUIZ CTA ── -->
+    <div class="quiz-cta-section">
+      <div>
+        <p class="quiz-cta-eyebrow">Teste gratuito · 10 minutos</p>
+        <h3 class="quiz-cta-title">Não sabe qual é<br>o seu nível? <em>Descubra agora.</em></h3>
+        <p class="quiz-cta-desc">
+          Um teste diferente — com situações reais de viagem, trabalho e cotidiano. No final, você vê seu resultado e pode chamar o Luiz direto para uma aula experimental gratuita.
+        </p>
+        <div class="quiz-cta-tags">
+          <span class="quiz-cta-tag">☕ Cotidiano</span>
+          <span class="quiz-cta-tag">✈️ Viagens</span>
+          <span class="quiz-cta-tag">🎬 Cultura</span>
+          <span class="quiz-cta-tag">💼 Trabalho</span>
+          <span class="quiz-cta-tag">A1 → C1</span>
+        </div>
+      </div>
+      <div class="quiz-cta-btn-wrap">
+        <a href="quiz.html" class="quiz-cta-btn">Fazer o teste →</a>
+        <p class="quiz-cta-note">Sem cadastro · Resultado imediato</p>
       </div>
     </div>
   </section>
@@ -763,7 +864,6 @@
     <p class="section-eyebrow">Materiais e recursos</p>
     <h2 class="section-title">O que você usa<br>dentro e fora das aulas.</h2>
     <p class="section-body">
-      <!-- A COMPLETAR: Luiz deve confirmar quais materiais usa de fato -->
       Nada é genérico. Os materiais são selecionados para cada aluno conforme seu nível e objetivo.
     </p>
 
@@ -807,7 +907,6 @@
         <span class="material-icon">✏️</span>
         <div>
           <h3>Apostilas e fichas</h3>
-          <!-- A COMPLETAR: confirmar se o Luiz usa apostilas físicas ou só digitais -->
           <p>Material de apoio enviado ao aluno para consulta e revisão entre as aulas.</p>
         </div>
       </div>
@@ -826,7 +925,6 @@
       <div class="depoimento-card">
         <div class="depoimento-stars">★★★★★</div>
         <p class="depoimento-text">
-          <!-- A COMPLETAR: substituir pelo depoimento real -->
           O Luiz tem um jeito único de ensinar. Em poucos meses eu já conseguia me comunicar durante a minha viagem para a Europa. Nunca imaginei que ia falar inglês com turistas na Itália.
         </p>
         <div class="depoimento-autor">
@@ -837,7 +935,6 @@
       <div class="depoimento-card">
         <div class="depoimento-stars">★★★★★</div>
         <p class="depoimento-text">
-          <!-- A COMPLETAR: substituir pelo depoimento real -->
           Estudei inglês por anos e nunca consegui falar. Com o professor Luiz, a abordagem é completamente diferente — ele te coloca para falar desde a primeira aula.
         </p>
         <div class="depoimento-autor">
@@ -848,7 +945,6 @@
       <div class="depoimento-card">
         <div class="depoimento-stars">★★★★★</div>
         <p class="depoimento-text">
-          <!-- A COMPLETAR: substituir pelo depoimento real -->
           As histórias de viagem que ele traz para as aulas fazem toda a diferença. Você aprende o idioma e ainda se prepara para os destinos. Recomendo muito.
         </p>
         <div class="depoimento-autor">
@@ -878,42 +974,35 @@
 
       <!-- STEP 1: Nível -->
       <div class="form-step active" id="fs-1">
-        <p class="form-step-title">Passo 1 de 4 — Seu inglês hoje</p>
-        <p style="font-size:0.9rem;color:var(--fg-muted);margin-bottom:20px;line-height:1.7;">Qual frase mais se parece com a sua situação agora?</p>
+        <p class="form-step-title">Passo 1 de 4 — Seu nível atual</p>
+        <p style="font-size:0.9rem;color:var(--fg-muted);margin-bottom:20px;line-height:1.7;">Qual das opções melhor descreve o seu inglês hoje?</p>
         <div class="form-opts" data-key="nivel">
-          <div class="form-opt" data-value="Nunca aprendi — pra mim é tudo grego">
+          <div class="form-opt" data-value="Iniciante (nunca estudei ou estudei muito pouco)">
             <span class="form-opt-icon">🌱</span>
             <div>
-              <div class="form-opt-label">Nunca aprendi</div>
-              <div class="form-opt-sub">Pra mim é tudo grego</div>
+              <div class="form-opt-label">Iniciante</div>
+              <div class="form-opt-sub">Nunca estudei ou estudei muito pouco</div>
             </div>
           </div>
-          <div class="form-opt" data-value="Sei algumas palavras mas não consigo montar uma frase">
-            <span class="form-opt-icon">🔤</span>
+          <div class="form-opt" data-value="Básico (conheço palavras e frases simples)">
+            <span class="form-opt-icon">📘</span>
             <div>
-              <div class="form-opt-label">Sei algumas palavras</div>
-              <div class="form-opt-sub">Mas não consigo montar uma frase</div>
+              <div class="form-opt-label">Básico</div>
+              <div class="form-opt-sub">Conheço palavras e frases simples</div>
             </div>
           </div>
-          <div class="form-opt" data-value="Entendo bastante mas travo na hora de falar">
-            <span class="form-opt-icon">👂</span>
-            <div>
-              <div class="form-opt-label">Entendo mas travo</div>
-              <div class="form-opt-sub">Ouço e leio, mas falar é difícil</div>
-            </div>
-          </div>
-          <div class="form-opt" data-value="Consigo me comunicar mas quero soar mais natural">
+          <div class="form-opt" data-value="Intermediário (me viro mas travo ao falar)">
             <span class="form-opt-icon">💬</span>
             <div>
-              <div class="form-opt-label">Me comunico, mas quero mais</div>
-              <div class="form-opt-sub">Me viro, mas ainda parece forçado</div>
+              <div class="form-opt-label">Intermediário</div>
+              <div class="form-opt-sub">Me viro mas travo ao falar</div>
             </div>
           </div>
-          <div class="form-opt" data-value="Falo bem — quero polir detalhes e soar nativo">
+          <div class="form-opt" data-value="Avançado (falo bem mas quero polir)">
             <span class="form-opt-icon">🎯</span>
             <div>
-              <div class="form-opt-label">Falo bem</div>
-              <div class="form-opt-sub">Quero polir e soar mais natural</div>
+              <div class="form-opt-label">Avançado</div>
+              <div class="form-opt-sub">Falo bem mas quero polir</div>
             </div>
           </div>
         </div>
@@ -976,7 +1065,7 @@
         </div>
       </div>
 
-      <!-- STEP 3: Disponibilidade e urgência -->
+      <!-- STEP 3: Disponibilidade -->
       <div class="form-step" id="fs-3">
         <p class="form-step-title">Passo 3 de 4 — Disponibilidade</p>
         <div class="form-fields" style="margin-bottom:20px;">
@@ -1047,7 +1136,7 @@
         </div>
         <div class="form-nav" style="margin-top:8px;">
           <button class="fbtn fbtn--ghost" onclick="fsPrev(4)">← Voltar</button>
-          <button class="fbtn fbtn--primary" onclick="fsSubmit()">Enviar para o Luiz ✈</button>
+          <button class="fbtn fbtn--primary" id="fs-submit-btn" onclick="fsSubmit()">Enviar para o Luiz ✈</button>
         </div>
         <p class="form-note">Luiz responde em até 48 horas. Suas respostas do questionário serão enviadas junto.</p>
       </div>
@@ -1080,17 +1169,19 @@
 </footer>
 
 <script>
-  const fsData = {};
+  var APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwQ31vAThVNWlRuVug0Gb25M8SDLOmU1tXD3XAj9K57SHQLESNRwdHsDkfSq9kpsnx-Jw/exec";
+
+  var fsData = {};
 
   // ── OPTION CLICKS ──
-  document.querySelectorAll('.form-opts').forEach(grid => {
-    const multi = grid.dataset.multi === 'true';
-    grid.querySelectorAll('.form-opt').forEach(opt => {
-      opt.addEventListener('click', () => {
+  document.querySelectorAll('.form-opts').forEach(function(grid) {
+    var multi = grid.dataset.multi === 'true';
+    grid.querySelectorAll('.form-opt').forEach(function(opt) {
+      opt.addEventListener('click', function() {
         if (multi) {
           opt.classList.toggle('sel');
         } else {
-          grid.querySelectorAll('.form-opt').forEach(o => o.classList.remove('sel'));
+          grid.querySelectorAll('.form-opt').forEach(function(o) { o.classList.remove('sel'); });
           opt.classList.add('sel');
         }
       });
@@ -1099,24 +1190,22 @@
 
   // ── PROGRESS DOTS ──
   function updateDots(step) {
-    for (let i = 1; i <= 4; i++) {
+    for (var i = 1; i <= 4; i++) {
       document.getElementById('dot-' + i).classList.toggle('done', i < step);
     }
   }
 
   // ── NAVIGATE ──
   function fsNext(n) {
-    const step = document.getElementById('fs-' + n);
-    // Save options
-    const grid = step.querySelector('.form-opts');
+    var step = document.getElementById('fs-' + n);
+    var grid = step.querySelector('.form-opts');
     if (grid) {
-      const key = grid.dataset.key;
-      const multi = grid.dataset.multi === 'true';
-      const sel = [...grid.querySelectorAll('.form-opt.sel')].map(o => o.dataset.value);
-      if (sel.length === 0 && n <= 2) return; // require selection for steps 1-2
+      var key = grid.dataset.key;
+      var multi = grid.dataset.multi === 'true';
+      var sel = Array.from(grid.querySelectorAll('.form-opt.sel')).map(function(o) { return o.dataset.value; });
+      if (sel.length === 0 && n <= 2) return;
       fsData[key] = multi ? sel.join(', ') : (sel[0] || '—');
     }
-    // Save selects for step 3
     if (n === 3) {
       fsData['frequencia'] = document.getElementById('f-freq').value || '—';
       fsData['prazo']      = document.getElementById('f-prazo').value || '—';
@@ -1133,39 +1222,48 @@
     updateDots(n - 1);
   }
 
-  // ── SUBMIT ──
+  // ── SUBMIT ── (envia para o Apps Script, não mailto)
   function fsSubmit() {
-    const nome  = document.getElementById('f-nome').value.trim();
-    const email = document.getElementById('f-email').value.trim();
-    const wpp   = document.getElementById('f-wpp').value.trim();
-    const cidade= document.getElementById('f-cidade').value.trim();
-    const msg   = document.getElementById('f-msg').value.trim();
+    var nome   = document.getElementById('f-nome').value.trim();
+    var email  = document.getElementById('f-email').value.trim();
+    var wpp    = document.getElementById('f-wpp').value.trim();
+    var cidade = document.getElementById('f-cidade').value.trim();
+    var msg    = document.getElementById('f-msg').value.trim();
 
     if (!nome || !email) return;
 
-    const perfil = [
-      ['Nível atual',    fsData.nivel     || '—'],
-      ['Objetivo',       fsData.objetivo  || '—'],
-      ['Frequência',     fsData.frequencia|| '—'],
-      ['Prazo',          fsData.prazo     || '—'],
-      ['Horário',        fsData.horario   || '—'],
-    ].map(([k,v]) => `${k}: ${v}`).join('\n');
+    var btn = document.getElementById('fs-submit-btn');
+    btn.disabled = true;
+    btn.textContent = 'Enviando...';
 
-    const body = encodeURIComponent(
-      `Olá Luiz!\n\nNova solicitação de aulas de inglês pelo site.\n\n` +
-      `DADOS DO ALUNO\nNome: ${nome}\nE-mail: ${email}\nWhatsApp: ${wpp||'—'}\nCidade: ${cidade||'—'}\n\n` +
-      `PERFIL DE APRENDIZADO\n${perfil}\n\n` +
-      `INFORMAÇÕES EXTRAS\n${msg||'—'}\n`
-    );
+    var payload = {
+      nome:      nome,
+      email:     email,
+      whatsapp:  wpp    || '—',
+      cidade:    cidade || '—',
+      mensagem:  msg    || '—',
+      nivel:     fsData.nivel      || '—',
+      objetivo:  fsData.objetivo   || '—',
+      frequencia:fsData.frequencia || '—',
+      prazo:     fsData.prazo      || '—',
+      horario:   fsData.horario    || '—',
+      origem:    'Formulário — ingles.html',
+      data:      new Date().toLocaleString('pt-BR')
+    };
 
-    const subject = encodeURIComponent(`Interesse em Aulas de Inglês — ${nome}`);
-    window.location.href = `mailto:SEU_EMAIL_AQUI?subject=${subject}&body=${body}`;
-
-    setTimeout(() => {
+    fetch(APPS_SCRIPT_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      body: JSON.stringify(payload)
+    }).then(function() {
       document.getElementById('fs-4').classList.remove('active');
       document.getElementById('form-success').classList.add('active');
-      for (let i = 1; i <= 4; i++) document.getElementById('dot-' + i).classList.add('done');
-    }, 300);
+      for (var i = 1; i <= 4; i++) document.getElementById('dot-' + i).classList.add('done');
+    }).catch(function() {
+      btn.disabled = false;
+      btn.textContent = 'Enviar para o Luiz ✈';
+      alert('Erro ao enviar. Por favor tente novamente.');
+    });
   }
 
   // Init dots

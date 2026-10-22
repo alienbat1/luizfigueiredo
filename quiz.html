@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Teste de Inglês — Luiz Figueiredo</title>
+  <meta name="description" content="Descubra seu nível de inglês em menos de 10 minutos. Quiz com situações reais do dia a dia, viagens, filmes e trabalho. Professor Luiz Figueiredo.">
+  <meta name="theme-color" content="#5d5f85">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Inter:wght@400;500;600&display=swap">
+
+<style>
+  /* ── SITE VARS (igual às outras páginas) ── */
+  :root {
+    --bg:        #5d5f85;
+    --bg-card:   rgba(255,255,255,0.08);
+    --bg-hover:  rgba(255,255,255,0.13);
+    --border:    rgba(255,255,255,0.14);
+    --fg:        #ffffff;
+    --fg-muted:  #e0dff5;
+    --accent:    #00c8e6;
+    --accent-dim:#00a8c4;
+    --indigo:    #4a4c72;
+    color-scheme: dark;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: #000;
+    border-bottom: 1px solid var(--border);
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  .nav-brand { display: flex; align-items: center; text-decoration: none; }
+  .nav-brand img { height: 64px; width: auto; display: block; mix-blend-mode: screen; }
+
+  .nav-links { display: flex; gap: 24px; list-style: none; }
+  .nav-links a {
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--fg-muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--fg); }
+  .nav-links a.active {
+    color: var(--accent);
+    border-bottom: 1px solid var(--accent);
+    padding-bottom: 2px;
+  }
+
+  @media (max-width: 640px) { .nav-links { display: none; } }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 28px clamp(16px, 5vw, 48px);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  footer img { height: 36px; mix-blend-mode: screen; }
+
+  .footer-links {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  .footer-links a {
+    font-size: 0.78rem;
+    color: var(--fg-muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover { color: var(--fg); }
+
+  .footer-copy {
+    font-size: 0.72rem;
+    color: rgba(255,255,255,0.3);
+    text-align: right;
+    width: 100%;
+  }
+
+  /* ── QUIZ VARS ── */
+  :root {
+    --q-bg: #5d5f85;
+    --q-surface: rgba(255,255,255,0.08);
+    --q-border: rgba(255,255,255,0.14);
+    --q-fg: #ffffff;
+    --q-fg-soft: #e0dff5;
+    --q-accent: #00c8e6;
+    --q-accent-dark: #00a8c4;
+    --q-accent-light: rgba(0,200,230,0.12);
+    --q-success: #2ecc71;
+    --q-success-light: rgba(46,204,113,0.12);
+    --q-warn: #f39c12;
+    --q-warn-light: rgba(243,156,18,0.12);
+    --q-hero-bg: #3a3c5a;
+    --q-radius: 12px;
+    --q-radius-sm: 8px;
+    --q-shadow: 0 2px 16px rgba(0,0,0,0.2);
+  }
+
+  /* ── QUIZ HERO ── */
+  .quiz-hero {
+    background: var(--q-hero-bg);
+    padding: 56px clamp(16px, 5vw, 48px) 48px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .quiz-hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 70% 40%, rgba(0,200,230,0.12) 0%, transparent 60%),
+                radial-gradient(ellipse at 20% 80%, rgba(0,168,196,0.08) 0%, transparent 55%);
+    pointer-events: none;
+  }
+
+  .quiz-hero-eyebrow {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    opacity: 0.65;
+    margin-bottom: 16px;
+    position: relative;
+  }
+
+  .quiz-hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 6vw, 48px);
+    font-weight: 700;
+    line-height: 1.15;
+    margin-bottom: 14px;
+    position: relative;
+  }
+
+  .quiz-hero h1 em { font-style: italic; color: var(--q-accent); }
+
+  .quiz-hero-sub {
+    font-size: 15px;
+    opacity: 0.72;
+    max-width: 480px;
+    margin: 0 auto 28px;
+    position: relative;
+  }
+
+  .quiz-hero-tags {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 36px;
+    position: relative;
+  }
+
+  .quiz-hero-tag {
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 4px 12px;
+    opacity: 0.85;
+  }
+
+  .btn-start {
+    background: var(--q-accent);
+    color: #0a0b14;
+    border: none;
+    border-radius: 30px;
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    padding: 14px 36px;
+    cursor: pointer;
+    transition: background 0.18s;
+    letter-spacing: 0.01em;
+    position: relative;
+  }
+
+  .btn-start:hover { background: var(--q-accent-dark); }
+
+  /* ── QUIZ BODY ── */
+  .quiz-wrap {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 40px clamp(16px, 5vw, 48px) 60px;
+  }
+
+  .progress-bar-wrap { margin-bottom: 28px; }
+  .progress-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-size: 12px;
+    color: var(--q-fg-soft);
+    margin-bottom: 8px;
+  }
+  .progress-meta strong { color: var(--q-fg); font-weight: 600; }
+  .progress-track { height: 5px; background: var(--q-border); border-radius: 3px; overflow: hidden; }
+  .progress-fill { height: 100%; background: var(--q-accent); border-radius: 3px; transition: width 0.4s cubic-bezier(0.4,0,0.2,1); }
+
+  .section-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--q-accent-light);
+    color: var(--q-accent);
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    margin-bottom: 14px;
+  }
+
+  .card {
+    background: var(--q-surface);
+    border: 1px solid var(--q-border);
+    border-radius: var(--q-radius);
+    box-shadow: var(--q-shadow);
+    padding: 28px;
+    margin-bottom: 16px;
+  }
+
+  .question-text {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(17px, 2.5vw, 20px);
+    font-weight: 600;
+    line-height: 1.45;
+    color: var(--q-fg);
+    margin-bottom: 6px;
+  }
+
+  .question-context {
+    font-size: 13px;
+    color: var(--q-fg-soft);
+    margin-bottom: 20px;
+    font-style: italic;
+  }
+
+  .options { display: flex; flex-direction: column; gap: 10px; }
+
+  .option-btn {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(255,255,255,0.05);
+    border: 1.5px solid var(--q-border);
+    border-radius: var(--q-radius-sm);
+    padding: 13px 16px;
+    cursor: pointer;
+    text-align: left;
+    font-family: 'Inter', sans-serif;
+    font-size: 14.5px;
+    color: var(--q-fg);
+    transition: border-color 0.15s, background 0.15s;
+    min-width: 0;
+    width: 100%;
+  }
+
+  .option-btn:hover:not(:disabled) {
+    border-color: var(--q-accent);
+    background: var(--q-accent-light);
+  }
+
+  .opt-letter {
+    min-width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--q-fg-soft);
+    flex-shrink: 0;
+    transition: background 0.15s, color 0.15s;
+  }
+
+  .option-btn.selected { border-color: var(--q-accent); background: var(--q-accent-light); }
+  .option-btn.selected .opt-letter { background: var(--q-accent); color: #0a0b14; }
+  .option-btn.correct { border-color: var(--q-success); background: var(--q-success-light); }
+  .option-btn.correct .opt-letter { background: var(--q-success); color: #0a0b14; }
+  .option-btn.wrong { border-color: #e74c3c; background: rgba(231,76,60,0.12); }
+  .option-btn.wrong .opt-letter { background: #e74c3c; color: #fff; }
+  .option-btn:disabled { cursor: default; }
+
+  .feedback {
+    margin-top: 14px;
+    padding: 12px 14px;
+    border-radius: var(--q-radius-sm);
+    font-size: 13.5px;
+    display: none;
+  }
+
+  .feedback.show { display: flex; gap: 10px; align-items: flex-start; }
+  .feedback.correct-fb { background: var(--q-success-light); color: var(--q-success); border: 1px solid var(--q-success); }
+  .feedback.wrong-fb { background: var(--q-warn-light); color: var(--q-warn); border: 1px solid var(--q-warn); }
+  .feedback-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+
+  .card-nav { display: flex; justify-content: flex-end; margin-top: 20px; }
+
+  .btn-next {
+    background: var(--q-accent);
+    color: #0a0b14;
+    border: none;
+    border-radius: 24px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 11px 28px;
+    cursor: pointer;
+    transition: background 0.18s;
+    display: none;
+  }
+
+  .btn-next:hover { background: var(--q-accent-dark); }
+  .btn-next.visible { display: inline-block; }
+
+  /* ── RESULT ── */
+  .result-card {
+    background: var(--q-surface);
+    border: 1px solid var(--q-border);
+    border-radius: var(--q-radius);
+    box-shadow: var(--q-shadow);
+    padding: 36px 28px;
+    text-align: center;
+  }
+
+  .level-badge {
+    display: inline-block;
+    font-family: 'Playfair Display', serif;
+    font-size: 42px;
+    font-weight: 700;
+    padding: 16px 32px;
+    border-radius: var(--q-radius);
+    margin-bottom: 16px;
+  }
+
+  .level-a1 { background: rgba(0,200,100,0.15); color: #4ecb7a; }
+  .level-a2 { background: rgba(0,200,150,0.15); color: #2ecc8a; }
+  .level-b1 { background: rgba(0,200,230,0.15); color: var(--q-accent); }
+  .level-b2 { background: rgba(100,130,230,0.15); color: #8099e6; }
+  .level-c1 { background: rgba(180,100,230,0.15); color: #c47fe0; }
+
+  .result-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(20px, 4vw, 26px);
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+
+  .result-desc {
+    font-size: 15px;
+    color: var(--q-fg-soft);
+    max-width: 420px;
+    margin: 0 auto 28px;
+  }
+
+  .result-score {
+    font-size: 13px;
+    color: var(--q-fg-soft);
+    margin-bottom: 28px;
+  }
+
+  .divider { height: 1px; background: var(--q-border); margin: 24px 0; }
+
+  .contact-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+
+  .contact-sub {
+    font-size: 13.5px;
+    color: var(--q-fg-soft);
+    margin-bottom: 20px;
+    text-align: left;
+  }
+
+  .contact-sub strong { color: var(--q-accent); }
+
+  .form-group { display: flex; flex-direction: column; gap: 4px; margin-bottom: 14px; text-align: left; }
+  .form-group label { font-size: 12px; font-weight: 600; color: var(--q-fg-soft); letter-spacing: 0.04em; text-transform: uppercase; }
+
+  .form-group input,
+  .form-group select {
+    background: rgba(255,255,255,0.06);
+    border: 1.5px solid var(--q-border);
+    border-radius: var(--q-radius-sm);
+    padding: 11px 14px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14.5px;
+    color: var(--q-fg);
+    outline: none;
+    transition: border-color 0.15s;
+    width: 100%;
+  }
+
+  .form-group input::placeholder { color: rgba(255,255,255,0.28); }
+  .form-group input:focus,
+  .form-group select:focus { border-color: var(--q-accent); }
+  .form-group select { appearance: none; cursor: pointer; }
+  .form-group select option { background: #3a3c5a; color: #fff; }
+
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  @media (max-width: 420px) { .form-row { grid-template-columns: 1fr; } }
+
+  .btn-submit {
+    width: 100%;
+    background: var(--q-accent);
+    color: #0a0b14;
+    border: none;
+    border-radius: 30px;
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    padding: 14px;
+    cursor: pointer;
+    transition: background 0.18s;
+    margin-top: 4px;
+  }
+
+  .btn-submit:hover { background: var(--q-accent-dark); }
+  .btn-submit:disabled { opacity: 0.6; cursor: default; }
+
+  .status-msg {
+    margin-top: 14px;
+    font-size: 13.5px;
+    padding: 12px 14px;
+    border-radius: var(--q-radius-sm);
+    display: none;
+    text-align: center;
+  }
+
+  .status-msg.show { display: block; }
+  .status-ok { background: var(--q-success-light); color: var(--q-success); border: 1px solid var(--q-success); }
+  .status-err { background: var(--q-warn-light); color: var(--q-warn); border: 1px solid var(--q-warn); }
+
+  .thankyou { text-align: center; padding: 20px 0; }
+  .thankyou-icon { font-size: 52px; margin-bottom: 16px; }
+  .thankyou h2 { font-family: 'Playfair Display', serif; font-size: 26px; margin-bottom: 10px; }
+  .thankyou p { color: var(--q-fg-soft); font-size: 15px; max-width: 360px; margin: 0 auto; }
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--fg-muted);
+    text-decoration: none;
+    transition: color 0.2s;
+    padding: clamp(16px, 3vw, 24px) clamp(16px, 5vw, 48px) 0;
+    display: block;
+    max-width: 1060px;
+    margin: 0 auto;
+  }
+
+  .back-link:hover { color: var(--accent); }
+
+  /* screens */
+  #screen-welcome { display: block; }
+  #screen-quiz    { display: none; }
+  #screen-result  { display: none; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-brand" href="index.html">
+    <img src="./assets/img/logo-lf.png" alt="Luiz Figueiredo">
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="ingles.html" class="active">Inglês</a></li>
+    <li><a href="documentarios.html">Documentários</a></li>
+    <li><a href="viagens.html">Viagens</a></li>
+    <li><a href="assistencia.html">Assistência</a></li>
+    <li><a href="contato.html">Contato</a></li>
+  </ul>
+</nav>
+
+<!-- SCREEN 0: Welcome -->
+<div id="screen-welcome">
+  <div class="quiz-hero">
+    <p class="quiz-hero-eyebrow">Luiz Figueiredo · English Teacher</p>
+    <h1>Descubra seu nível<br><em>de inglês</em></h1>
+    <p class="quiz-hero-sub">Um teste diferente — com situações reais do dia a dia, viagens, filmes e trabalho. Leva menos de 10 minutos.</p>
+    <div class="quiz-hero-tags">
+      <span class="quiz-hero-tag">☕ Cotidiano</span>
+      <span class="quiz-hero-tag">✈️ Viagens</span>
+      <span class="quiz-hero-tag">🎬 Filmes &amp; Cultura</span>
+      <span class="quiz-hero-tag">💼 Trabalho</span>
+    </div>
+    <button class="btn-start" id="btn-start">Começar o teste →</button>
+  </div>
+  <a class="back-link" href="ingles.html">← Voltar para Aulas de Inglês</a>
+</div>
+
+<!-- SCREEN 1: Quiz -->
+<div id="screen-quiz">
+  <div class="quiz-wrap">
+    <div class="progress-bar-wrap">
+      <div class="progress-meta">
+        <span>Pergunta <strong id="q-num">1</strong> de <strong id="q-total">20</strong></span>
+        <span id="q-section-label"></span>
+      </div>
+      <div class="progress-track"><div class="progress-fill" id="progress-fill" style="width:0%"></div></div>
+    </div>
+    <div id="q-badge" class="section-badge"></div>
+    <div class="card">
+      <p id="q-text" class="question-text"></p>
+      <p id="q-context" class="question-context"></p>
+      <div class="options" id="q-options"></div>
+      <div class="feedback" id="q-feedback">
+        <span class="feedback-icon" id="fb-icon"></span>
+        <div class="feedback-text" id="fb-text"></div>
+      </div>
+    </div>
+    <div class="card-nav">
+      <button class="btn-next" id="btn-next">Próxima →</button>
+    </div>
+  </div>
+</div>
+
+<!-- SCREEN 2: Result -->
+<div id="screen-result">
+  <div class="quiz-wrap">
+    <div class="result-card">
+      <div id="level-badge" class="level-badge"></div>
+      <h2 id="result-title" class="result-title"></h2>
+      <p id="result-desc" class="result-desc"></p>
+      <p id="result-score" class="result-score"></p>
+      <div class="divider"></div>
+      <div id="contact-section">
+        <p class="contact-title">Fale com o Luiz</p>
+        <p class="contact-sub">Você chegou até aqui — isso já diz muito! Deixe seus dados e o Luiz entra em contato para uma aula experimental <strong>gratuita</strong>. Sem compromisso.</p>
+        <form id="contact-form">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="f-nome">Seu nome</label>
+              <input type="text" id="f-nome" placeholder="Maria Silva" required>
+            </div>
+            <div class="form-group">
+              <label for="f-email">E-mail</label>
+              <input type="email" id="f-email" placeholder="maria@email.com" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="f-whatsapp">WhatsApp</label>
+            <input type="tel" id="f-whatsapp" placeholder="(11) 99999-9999" required>
+          </div>
+          <div class="form-group">
+            <label for="f-objetivo">Meu principal objetivo com o inglês</label>
+            <select id="f-objetivo">
+              <option value="">Selecione...</option>
+              <option>Viagens e turismo</option>
+              <option>Trabalho e carreira</option>
+              <option>Filmes, séries e música</option>
+              <option>Estudar no exterior</option>
+              <option>Uso geral / cotidiano</option>
+            </select>
+          </div>
+          <button type="submit" class="btn-submit" id="btn-submit">Quero falar com o Luiz ✉️</button>
+          <div class="status-msg status-ok" id="status-ok">✅ Enviado! O Luiz vai entrar em contato em breve.</div>
+          <div class="status-msg status-err" id="status-err">⚠️ Erro ao enviar. Tente novamente em breve.</div>
+        </form>
+      </div>
+      <div id="thankyou-section" style="display:none">
+        <div class="thankyou">
+          <div class="thankyou-icon">🎉</div>
+          <h2>Tudo certo!</h2>
+          <p>O Luiz recebeu seu contato e vai responder em breve. Até logo!</p>
+        </div>
+      </div>
+    </div>
+    <a class="back-link" href="ingles.html" style="padding-top:24px;">← Voltar para Aulas de Inglês</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <a href="index.html">
+    <img src="./assets/img/logo-lf.png" alt="Luiz Figueiredo">
+  </a>
+  <div class="footer-links">
+    <a href="index.html">Home</a>
+    <a href="ingles.html">Inglês</a>
+    <a href="documentarios.html">Documentários</a>
+    <a href="viagens.html">Viagens</a>
+    <a href="assistencia.html">Assistência</a>
+    <a href="contato.html">Contato</a>
+  </div>
+  <p class="footer-copy">© 2025 Luiz Figueiredo — Itaperuna, RJ</p>
+</footer>
+
+<script>
+var APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwQ31vAThVNWlRuVug0Gb25M8SDLOmU1tXD3XAj9K57SHQLESNRwdHsDkfSq9kpsnx-Jw/exec";
+
+var questions = [
+  // ── A1: vocabulary & basic structure ──
+  {section:"☕ Everyday",level:"A1",
+   text:"Choose the correct word: \"I ___ from Brazil.\"",
+   context:"Fill in the blank.",
+   options:["am","is","are","be"],
+   correct:0,
+   feedback:"Com \"I\" usamos sempre \"am\": I am from Brazil. \"Is\" vai com he/she/it, \"are\" com you/we/they."},
+
+  {section:"☕ Everyday",level:"A1",
+   text:"Which sentence is correct?",
+   context:"",
+   options:["She have two cats.","She has two cats.","She haves two cats.","She having two cats."],
+   correct:1,
+   feedback:"Com he/she/it, o verbo \"have\" vira \"has\" no presente simples. \"She have\" é o erro mais comum de iniciantes."},
+
+  {section:"☕ Everyday",level:"A2",
+   text:"\"I'm not feeling well today.\" What does this mean?",
+   context:"",
+   options:["I feel great.","I'm a little sick or tired.","I don't like today.","I can't feel anything."],
+   correct:1,
+   feedback:"\"Not feeling well\" é a forma educada de dizer que está se sentindo mal, doente ou cansado — muito comum no dia a dia."},
+
+  {section:"☕ Everyday",level:"A2",
+   text:"Choose the right question: you want to know the price of something.",
+   context:"",
+   options:["How many is this?","How much does this cost?","What is the price of this?","How cost is this?"],
+   correct:1,
+   feedback:"\"How much does it cost?\" é a forma padrão para perguntar preço. \"How many\" é para quantidades com substantivos contáveis, não para preço."},
+
+  // ── A2/B1: grammar in context ──
+  {section:"✈️ Travel",level:"A2",
+   text:"At check-in: \"Window or ___ seat?\"",
+   context:"The flight attendant is asking about your preference.",
+   options:["aisle","alley","corridor","hallway"],
+   correct:0,
+   feedback:"\"Aisle\" (pronuncia-se \"AY-ul\") é o corredor do avião — o assento do lado do corredor. Essencial para quem viaja bastante!"},
+
+  {section:"✈️ Travel",level:"B1",
+   text:"\"My bag is ___ — do you have a scale?\"",
+   context:"You think your luggage might be too heavy.",
+   options:["overweight","overloaded","too fat","above weight"],
+   correct:0,
+   feedback:"\"Overweight\" é o termo padrão para bagagem acima do limite. \"Overloaded\" existe mas é mais para veículos e sistemas. \"Above weight\" não é natural em inglês."},
+
+  {section:"✈️ Travel",level:"B1",
+   text:"The receptionist says: \"I'll have someone bring your bags up.\" She means:",
+   context:"",
+   options:["She will carry your bags herself.","Someone will take your bags to your room.","You need to pick up your bags downstairs.","Your bags are already in the room."],
+   correct:1,
+   feedback:"\"Bring up\" aqui significa trazer para cima (para o quarto). Ela está dizendo que vai mandar alguém levar as malas para o seu quarto — serviço de portaria."},
+
+  {section:"✈️ Travel",level:"B2",
+   text:"\"The hostel was nothing to write home about, but the location was unbeatable.\"",
+   context:"What does the traveler mean?",
+   options:["The hostel was average, but the location was perfect.","The hostel was so good they wrote about it.","The hostel had no Wi-Fi so they couldn't email home.","The hostel and location were both disappointing."],
+   correct:0,
+   feedback:"\"Nothing to write home about\" = nada de especial, mediano. \"Unbeatable\" = impossível de superar. A pessoa está dizendo que o hostel era do comum, mas a localização era excelente."},
+
+  // ── B1: grammar & phrasal verbs ──
+  {section:"🎬 Culture",level:"B1",
+   text:"Choose the correct form: \"By the time we arrived, the show ___ already started.\"",
+   context:"",
+   options:["had","have","has","was"],
+   correct:0,
+   feedback:"Usamos o Past Perfect (had + particípio) para indicar que algo aconteceu ANTES de outro evento no passado. \"Had already started\" = já tinha começado quando chegamos."},
+
+  {section:"🎬 Culture",level:"B1",
+   text:"\"I need to brush ___ on my English before the trip.\"",
+   context:"Which phrasal verb fits?",
+   options:["up","over","off","out"],
+   correct:0,
+   feedback:"\"Brush up on\" = revisar, dar uma relembrada em algo que você já sabe mas está enferrujado. Muito usado para idiomas e habilidades. Ex: \"I brushed up on my French before Paris.\""},
+
+  {section:"🎬 Culture",level:"B1",
+   text:"\"She's a real people person.\" This means:",
+   context:"",
+   options:["She loves socializing and gets along with everyone.","She works with people professionally.","She is very popular on social media.","She prefers people over animals."],
+   correct:0,
+   feedback:"\"A people person\" é alguém que genuinamente gosta de interagir com outras pessoas, sociável e fácil de se relacionar. Uma expressão idiomática muito natural."},
+
+  {section:"🎬 Culture",level:"B2",
+   text:"\"The film dragged a bit in the middle, but the ending totally redeemed it.\"",
+   context:"What is the reviewer saying?",
+   options:["The middle was slow, but the ending saved the film.","The film was boring from start to finish.","The ending was disappointing after a good start.","The middle and ending were both excellent."],
+   correct:0,
+   feedback:"\"Drag\" = arrastar, andar devagar (ritmo lento). \"Redeem\" = resgatar, compensar. O crítico achou o meio monótono mas a conclusão valeu a pena."},
+
+  // ── B2: vocabulary & register ──
+  {section:"💼 Work",level:"B2",
+   text:"Your boss says: \"Let's touch base on this after the meeting.\"",
+   context:"What does she want to do?",
+   options:["Briefly check in and sync up on the topic later.","Touch the base of the presentation together.","Discuss the topic in full detail right now.","Skip the topic entirely."],
+   correct:0,
+   feedback:"\"Touch base\" = dar uma rápida atualização, entrar em contato brevemente para alinhar. Expressão super comum em ambiente profissional anglófono."},
+
+  {section:"💼 Work",level:"B2",
+   text:"Choose the sentence with the correct preposition: you're talking about your schedule.",
+   context:"",
+   options:["I'm in a meeting on Monday at 3pm.","I'm at a meeting in Monday on 3pm.","I'm on a meeting at Monday in 3pm.","I'm for a meeting at Monday on 3pm."],
+   correct:0,
+   feedback:"Regra das preposições de tempo: IN = mês/ano/período (in the morning), ON = dia específico (on Monday), AT = hora exata (at 3pm). Essa combinação é fundamental."},
+
+  {section:"💼 Work",level:"B2",
+   text:"\"She's been in the loop since day one.\" What does this mean?",
+   context:"",
+   options:["She has been kept informed about everything from the start.","She has been in charge of the project.","She joined the team recently.","She created a loop in the system."],
+   correct:0,
+   feedback:"\"In the loop\" = informado, incluído nas comunicações e decisões. \"Keep someone in the loop\" = manter alguém a par do que está acontecendo. O oposto é \"out of the loop\"."},
+
+  // ── C1: nuance & advanced grammar ──
+  {section:"🌟 Advanced",level:"C1",
+   text:"\"I wish I had taken that job offer last year.\"",
+   context:"What does this sentence express?",
+   options:["Regret about a past decision.","A plan for next year.","Happiness about a past choice.","A request for advice."],
+   correct:0,
+   feedback:"\"Wish + past perfect\" expressa arrependimento sobre algo no passado. A pessoa não aceitou a oferta e agora se arrepende. \"I wish I had taken it\" = deveria ter aceitado."},
+
+  {section:"🌟 Advanced",level:"C1",
+   text:"Choose the most natural phrasing for a formal email:",
+   context:"",
+   options:["I am writing to enquire about the availability of the position.","I want to know if the job is still open.","Hey, just checking if the role is still up for grabs.","Can you tell me if there's still a spot?"],
+   correct:0,
+   feedback:"\"I am writing to enquire about\" é o registro formal correto para e-mail profissional. As outras opções são informais (B), coloquiais (C) ou diretas demais (D) para contexto formal."},
+
+  {section:"🌟 Advanced",level:"C1",
+   text:"\"The policy is well-intentioned but ultimately counterproductive.\"",
+   context:"What does the speaker think about the policy?",
+   options:["It means well, but it ends up causing more harm than good.","It is both good in theory and practice.","It was created with bad intentions.","It has no real effect at all."],
+   correct:0,
+   feedback:"\"Well-intentioned\" = boa intenção. \"Counterproductive\" = que produz o efeito contrário ao desejado. A frase expressa uma crítica sofisticada: a ideia é boa, mas o resultado é ruim."},
+
+  {section:"🌟 Advanced",level:"C1",
+   text:"\"Had I known the road was flooded, I would have taken a different route.\"",
+   context:"Which option has the same meaning?",
+   options:["If I had known the road was flooded, I would have taken a different route.","If I knew the road was flooded, I would take a different route.","I knew the road was flooded and changed my route.","I didn't know the route, so I was flooded."],
+   correct:0,
+   feedback:"\"Had I known\" é a inversão do terceiro condicional — forma mais literária e avançada de \"If I had known\". Muito usada em inglês escrito e discurso formal. Mesmo significado, registro mais sofisticado."},
+
+  {section:"🌟 Advanced",level:"C1",
+   text:"\"The author's prose is deceptively simple — beneath the surface lies a web of allusions.\"",
+   context:"What is being said about the writing style?",
+   options:["The writing looks simple but is actually complex and full of references.","The author writes in a very complicated way that confuses readers.","The prose is simple and has nothing hidden.","The author uses too many difficult words."],
+   correct:0,
+   feedback:"\"Deceptively simple\" = parece simples, mas engana — na verdade é complexo. \"Allusions\" = alusões, referências implícitas. Uma frase típica de análise literária em nível C1/C2."}
+];
+
+var levels = [
+  {min:0,  max:4,  code:"A1", label:"Iniciante (A1)",         badge:"level-a1", desc:"Você entende expressões básicas do dia a dia. Com prática e um bom professor, vai evoluir rápido!"},
+  {min:5,  max:9,  code:"A2", label:"Elementar (A2)",          badge:"level-a2", desc:"Você já se vira em situações simples — cumprimentos, compras, viagens básicas. Hora de expandir!"},
+  {min:10, max:13, code:"B1", label:"Intermediário (B1)",      badge:"level-b1", desc:"Você consegue se comunicar em situações cotidianas e de viagem. Falta fluência e vocabulário."},
+  {min:14, max:16, code:"B2", label:"Intermediário Alto (B2)", badge:"level-b2", desc:"Você já domina inglês para trabalho e filmes. O foco agora é precisão e naturalidade."},
+  {min:17, max:20, code:"C1", label:"Avançado (C1/C2)",        badge:"level-c1", desc:"Seu inglês é sofisticado! Uma mentoria focada pode polir seu uso em contextos acadêmicos e profissionais."}
+];
+
+var current = 0, score = 0, answered = false;
+var quizResult = {level:"", levelLabel:"", score:0};
+
+function show(id) {
+  document.getElementById('screen-welcome').style.display = 'none';
+  document.getElementById('screen-quiz').style.display = 'none';
+  document.getElementById('screen-result').style.display = 'none';
+  document.getElementById(id).style.display = 'block';
+  window.scrollTo(0, 0);
+}
+
+function startQuiz() {
+  current = 0; score = 0; answered = false;
+  show('screen-quiz');
+  renderQ();
+}
+
+function renderQ() {
+  var q = questions[current];
+  var total = questions.length;
+  document.getElementById('q-num').textContent = current + 1;
+  document.getElementById('q-total').textContent = total;
+  document.getElementById('q-text').textContent = q.text;
+  document.getElementById('q-context').textContent = q.context;
+  document.getElementById('q-badge').textContent = q.section;
+  document.getElementById('q-section-label').textContent = q.section;
+  document.getElementById('progress-fill').style.width = ((current / total) * 100) + '%';
+  document.getElementById('q-feedback').className = 'feedback';
+  document.getElementById('btn-next').className = 'btn-next';
+
+  var opts = document.getElementById('q-options');
+  opts.innerHTML = '';
+  var letters = ['A','B','C','D'];
+  q.options.forEach(function(opt, i) {
+    var btn = document.createElement('button');
+    btn.className = 'option-btn';
+    btn.innerHTML = '<span class="opt-letter">' + letters[i] + '</span><span>' + opt + '</span>';
+    btn.setAttribute('data-idx', i);
+    opts.appendChild(btn);
+  });
+  answered = false;
+}
+
+function selectAnswer(idx) {
+  if (answered) return;
+  answered = true;
+  var q = questions[current];
+  var isCorrect = idx === q.correct;
+  if (isCorrect) score++;
+
+  var btns = document.querySelectorAll('.option-btn');
+  btns.forEach(function(btn, i) {
+    btn.disabled = true;
+    if (i === q.correct) btn.classList.add('correct');
+    else if (i === idx && !isCorrect) btn.classList.add('wrong');
+  });
+
+  var fb = document.getElementById('q-feedback');
+  fb.className = 'feedback show ' + (isCorrect ? 'correct-fb' : 'wrong-fb');
+  document.getElementById('fb-icon').textContent = isCorrect ? '✅' : '💡';
+  document.getElementById('fb-text').innerHTML = '<strong>' + (isCorrect ? 'Correto!' : 'Quase!') + '</strong> ' + q.feedback;
+
+  var btnNext = document.getElementById('btn-next');
+  btnNext.textContent = current < questions.length - 1 ? 'Próxima →' : 'Ver meu resultado →';
+  btnNext.className = 'btn-next visible';
+}
+
+function nextQ() {
+  if (current < questions.length - 1) {
+    current++;
+    renderQ();
+  } else {
+    showResult();
+  }
+}
+
+function showResult() {
+  var lvl = levels[0];
+  for (var i = 0; i < levels.length; i++) {
+    if (score >= levels[i].min && score <= levels[i].max) { lvl = levels[i]; break; }
+  }
+  quizResult = {level: lvl.code, levelLabel: lvl.label, score: score};
+  document.getElementById('level-badge').textContent = lvl.code;
+  document.getElementById('level-badge').className = 'level-badge ' + lvl.badge;
+  document.getElementById('result-title').textContent = lvl.label;
+  document.getElementById('result-desc').textContent = lvl.desc;
+  document.getElementById('result-score').textContent = 'Você acertou ' + score + ' de ' + questions.length + ' questões.';
+  show('screen-result');
+}
+
+function submitForm(e) {
+  e.preventDefault();
+  var btn = document.getElementById('btn-submit');
+  document.getElementById('status-ok').className = 'status-msg status-ok';
+  document.getElementById('status-err').className = 'status-msg status-err';
+  btn.disabled = true;
+  btn.textContent = 'Enviando...';
+
+  var payload = {
+    nome: document.getElementById('f-nome').value,
+    email: document.getElementById('f-email').value,
+    whatsapp: document.getElementById('f-whatsapp').value,
+    objetivo: document.getElementById('f-objetivo').value,
+    nivel: quizResult.level,
+    nivelLabel: quizResult.levelLabel,
+    acertos: quizResult.score,
+    total: questions.length,
+    data: new Date().toLocaleString('pt-BR')
+  };
+
+  fetch(APPS_SCRIPT_URL, {
+    method: 'POST',
+    mode: 'no-cors',
+    body: JSON.stringify(payload)
+  }).then(function() {
+    document.getElementById('contact-section').style.display = 'none';
+    document.getElementById('thankyou-section').style.display = 'block';
+  }).catch(function() {
+    btn.disabled = false;
+    btn.textContent = 'Quero falar com o Luiz ✉️';
+    document.getElementById('status-err').className = 'status-msg status-err show';
+  });
+}
+
+document.getElementById('btn-start').addEventListener('click', startQuiz);
+document.getElementById('btn-next').addEventListener('click', nextQ);
+document.getElementById('q-options').addEventListener('click', function(e) {
+  var btn = e.target.closest('.option-btn');
+  if (btn) selectAnswer(parseInt(btn.getAttribute('data-idx')));
+});
+document.getElementById('contact-form').addEventListener('submit', submitForm);
+</script>
+
+</body>
+</html>
